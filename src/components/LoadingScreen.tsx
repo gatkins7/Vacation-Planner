@@ -22,15 +22,31 @@ export default function LoadingScreen({ destination, duration }: LoadingScreenPr
   ]
 
   useEffect(() => {
+    // Calculate loading time based on trip duration
+    const days = parseInt(duration) || 1
+    let totalLoadingTime
+    
+    if (days <= 2) {
+      totalLoadingTime = 15000 // 15 seconds for short trips
+    } else if (days <= 4) {
+      totalLoadingTime = 25000 // 25 seconds for medium trips
+    } else {
+      totalLoadingTime = 40000 // 40 seconds for long trips
+    }
+    
+    const intervalTime = 100 // Update every 100ms
+    const totalIntervals = totalLoadingTime / intervalTime
+    const progressIncrement = 100 / totalIntervals
+
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(interval)
           return 100
         }
-        return prev + (100 / 200) // 200 intervals over ~20 seconds (100ms each)
+        return prev + progressIncrement
       })
-    }, 100)
+    }, intervalTime)
 
     const stepInterval = setInterval(() => {
       setCurrentStep(prev => (prev + 1) % steps.length)
@@ -40,7 +56,7 @@ export default function LoadingScreen({ destination, duration }: LoadingScreenPr
       clearInterval(interval)
       clearInterval(stepInterval)
     }
-  }, [])
+  }, [duration])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">

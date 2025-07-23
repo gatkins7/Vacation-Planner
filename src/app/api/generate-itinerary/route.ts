@@ -47,7 +47,7 @@ Keep it detailed and informative. Focus on must-see highlights, restaurants, and
 
     // Create a timeout controller
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 25000) // 25 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 45000) // 45 second timeout
 
     try {
       const response = await fetch('https://api.deepseek.com/chat/completions', {
@@ -68,7 +68,7 @@ Keep it detailed and informative. Focus on must-see highlights, restaurants, and
               content: prompt
             }
           ],
-          max_tokens: 2500, // Increased for longer itineraries with emojis
+          max_tokens: 3500, // Increased further for detailed longer itineraries
           temperature: 0.3, // Lower for more focused output
         }),
         signal: controller.signal

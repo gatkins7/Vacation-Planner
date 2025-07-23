@@ -49,9 +49,9 @@ export default function VacationPlanner({ user, onSignOut }: VacationPlannerProp
 
       const data = await response.json()
       
-      // Ensure minimum loading time of 20 seconds
+      // Ensure minimum loading time of 15 seconds
       const elapsedTime = Date.now() - startTime
-      const remainingTime = Math.max(0, 20000 - elapsedTime)
+      const remainingTime = Math.max(0, 15000 - elapsedTime)
       
       await new Promise(resolve => setTimeout(resolve, remainingTime))
       

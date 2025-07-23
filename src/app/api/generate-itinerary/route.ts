@@ -27,21 +27,21 @@ export async function POST(req: NextRequest) {
 
     const prompt = `Create a ${duration}-day vacation itinerary for ${destination}. 
 
-Format: Plain text with clear structure and emojis for visual appeal.
+Format: Plain text with clear structure and minimal emojis.
 
 Structure:
 - Use "📅 DAY 1:", "📅 DAY 2:", etc. for day headers (all caps)
-- Use emojis for time periods: "🌅 Morning:", "☀️ Afternoon:", "🌙 Evening:" 
-- Include relevant emojis for activities (🏛️ museums, 🍽️ restaurants, 🏖️ beaches, etc.)
-- Add practical travel tips at the end with 💡 Travel Tips:
+- Use "🌅 Morning:", "☀️ Afternoon:", "🌙 Evening:" for time periods
+- Write activities in plain text without emojis
+- Add practical travel tips at the end with "💡 Travel Tips:"
 
 Example format:
 📅 DAY 1: Arrival
-🌅 Morning: Check into hotel 🏨 and explore nearby area
-☀️ Afternoon: Visit main attractions 🏛️ and city center  
-🌙 Evening: Dinner at local restaurant 🍽️
+🌅 Morning: Check into hotel and explore nearby area
+☀️ Afternoon: Visit main attractions and city center  
+🌙 Evening: Dinner at local restaurant
 
-Keep it detailed and informative. Focus on must-see highlights, restaurants, and practical advice. Use emojis to make activities more engaging and fun!`
+Keep it detailed and informative. Focus on must-see highlights, restaurants, and practical advice. Use clear, readable text without excessive emojis.`
 
     console.log('Making request to DeepSeek API...')
 
@@ -149,41 +149,41 @@ function generateFallbackItinerary(destination: string, duration: number) {
   const itinerary = `${duration}-Day Itinerary for ${destination}
 
 📅 DAY 1: Arrival and Exploration
-🌅 Morning: Arrive and check into accommodation 🏨
-☀️ Afternoon: Explore the city center and main attractions 🏛️
-🌙 Evening: Try local cuisine at a recommended restaurant 🍽️
+🌅 Morning: Arrive and check into accommodation
+☀️ Afternoon: Explore the city center and main attractions
+🌙 Evening: Try local cuisine at a recommended restaurant
 
 ${duration > 1 ? `📅 DAY 2: Cultural Highlights
-🌅 Morning: Visit museums and cultural sites 🏛️🎨
-☀️ Afternoon: Walking tour of historic areas 🚶‍♂️🏰  
-🌙 Evening: Experience local nightlife or entertainment 🎭🍻
+🌅 Morning: Visit museums and cultural sites
+☀️ Afternoon: Walking tour of historic areas  
+🌙 Evening: Experience local nightlife or entertainment
 
 ` : ''}${duration > 2 ? `📅 DAY 3: Natural Attractions
-🌅 Morning: Explore parks, gardens, or natural landmarks 🌳🌺
-☀️ Afternoon: Outdoor activities or scenic viewpoints 🏞️📸
-🌙 Evening: Relax and enjoy local atmosphere ☕🌆
+🌅 Morning: Explore parks, gardens, or natural landmarks
+☀️ Afternoon: Outdoor activities or scenic viewpoints
+🌙 Evening: Relax and enjoy local atmosphere
 
 ` : ''}${duration > 3 ? `📅 DAY 4: Shopping and Local Life
-🌅 Morning: Visit local markets and shopping areas 🛍️🏪
-☀️ Afternoon: Experience neighborhood life and cafes ☕🏘️
-🌙 Evening: Farewell dinner at a special restaurant 🍽️✨
+🌅 Morning: Visit local markets and shopping areas
+☀️ Afternoon: Experience neighborhood life and cafes
+🌙 Evening: Farewell dinner at a special restaurant
 
 ` : ''}${duration > 4 ? `📅 DAYS 5-${duration}: Extended Exploration
-🌅 Morning: Discover hidden gems and off-the-beaten-path locations 💎🗺️
-☀️ Afternoon: Take day trips to nearby attractions 🚗🏔️
-🌙 Evening: Try various local foods and specialties 🍜🥘
+🌅 Morning: Discover hidden gems and off-the-beaten-path locations
+☀️ Afternoon: Take day trips to nearby attractions
+🌙 Evening: Try various local foods and specialties
 
-🎯 Additional Activities:
-- Immerse yourself in local traditions and customs 🎭
-- Collect souvenirs and memories 🎁📸
-- Experience different neighborhoods 🏘️
+Additional Activities:
+- Immerse yourself in local traditions and customs
+- Collect souvenirs and memories
+- Experience different neighborhoods
 
 ` : ''}💡 Travel Tips:
-- Research local transportation options 🚇🚌
-- Learn basic phrases in the local language 🗣️📖
-- Check weather conditions and pack accordingly 🌤️👕
-- Keep important documents and emergency contacts handy 📋📞
-- Respect local customs and traditions 🙏🌍
+- Research local transportation options
+- Learn basic phrases in the local language
+- Check weather conditions and pack accordingly
+- Keep important documents and emergency contacts handy
+- Respect local customs and traditions
 
 Note: This is a basic itinerary template. For a more detailed and personalized plan, please try again or consult local travel guides.`
 

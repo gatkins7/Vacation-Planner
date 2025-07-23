@@ -169,7 +169,7 @@ export default function VacationPlanner({ user, onSignOut }: VacationPlannerProp
                     // Day headers (📅 DAY 1:, 📅 DAY 2:, etc.)
                     if (trimmedLine.match(/^📅\s*DAY \d+:/i) || trimmedLine.match(/^DAY \d+:/i)) {
                       return (
-                        <h4 key={index} className="text-xl font-bold text-blue-800 mt-6 mb-3 pb-2 border-b-2 border-blue-200">
+                        <h4 key={index} className="text-xl font-bold text-gray-800 mt-6 mb-3 pb-2 border-b-2 border-gray-200">
                           {trimmedLine}
                         </h4>
                       )
@@ -178,7 +178,7 @@ export default function VacationPlanner({ user, onSignOut }: VacationPlannerProp
                     // Time period headers (🌅 Morning:, ☀️ Afternoon:, 🌙 Evening:)
                     if (trimmedLine.match(/^(🌅|☀️|🌙)\s*(Morning|Afternoon|Evening|Night):/i) || trimmedLine.match(/^(Morning|Afternoon|Evening|Night):/i)) {
                       return (
-                        <h5 key={index} className="text-lg font-semibold text-purple-700 mt-4 mb-2">
+                        <h5 key={index} className="text-lg font-semibold text-gray-700 mt-4 mb-2">
                           {trimmedLine}
                         </h5>
                       )
@@ -187,16 +187,16 @@ export default function VacationPlanner({ user, onSignOut }: VacationPlannerProp
                     // Travel Tips header (💡 Travel Tips:)
                     if (trimmedLine.match(/^(💡\s*)?(Travel Tips|Tips):/i)) {
                       return (
-                        <h4 key={index} className="text-xl font-bold text-green-800 mt-6 mb-3 pb-2 border-b-2 border-green-200">
+                        <h4 key={index} className="text-xl font-bold text-gray-800 mt-6 mb-3 pb-2 border-b-2 border-gray-200">
                           {trimmedLine}
                         </h4>
                       )
                     }
                     
-                    // Additional Activities header (🎯 Additional Activities:)
-                    if (trimmedLine.match(/^(🎯\s*)?(Additional Activities):/i)) {
+                    // Additional Activities header (Additional Activities:)
+                    if (trimmedLine.match(/^(Additional Activities):/i)) {
                       return (
-                        <h4 key={index} className="text-xl font-bold text-orange-800 mt-6 mb-3 pb-2 border-b-2 border-orange-200">
+                        <h4 key={index} className="text-xl font-bold text-gray-800 mt-6 mb-3 pb-2 border-b-2 border-gray-200">
                           {trimmedLine}
                         </h4>
                       )
@@ -204,7 +204,7 @@ export default function VacationPlanner({ user, onSignOut }: VacationPlannerProp
                     
                     // Regular content
                     return (
-                      <p key={index} className="text-sm leading-relaxed ml-4">
+                      <p key={index} className="text-sm leading-relaxed ml-4 text-gray-700">
                         {trimmedLine}
                       </p>
                     )

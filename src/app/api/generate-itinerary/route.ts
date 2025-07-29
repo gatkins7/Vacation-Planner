@@ -84,7 +84,7 @@ Keep it detailed and informative. Focus on must-see highlights, restaurants, and
         
         // If DeepSeek fails, return a basic itinerary
         if (response.status === 504 || response.status >= 500) {
-          return generateFallbackItinerary(destination, duration)
+          return await generateFallbackItinerary(destination, duration)
         }
         
         throw new Error(`DeepSeek API error: ${response.status} - ${errorText}`)
@@ -97,7 +97,7 @@ Keep it detailed and informative. Focus on must-see highlights, restaurants, and
 
       if (!itinerary) {
         console.error('No itinerary content in response')
-        return generateFallbackItinerary(destination, duration)
+        return await generateFallbackItinerary(destination, duration)
       }
 
       console.log('Generated itinerary length:', itinerary.length)
@@ -119,7 +119,7 @@ Keep it detailed and informative. Focus on must-see highlights, restaurants, and
       
       if (fetchError.name === 'AbortError') {
         console.error('DeepSeek API request timed out')
-        return generateFallbackItinerary(destination, duration)
+        return await generateFallbackItinerary(destination, duration)
       }
       
       throw fetchError
@@ -132,7 +132,7 @@ Keep it detailed and informative. Focus on must-see highlights, restaurants, and
     // Return fallback for any error
     if (error.message.includes('destination') && error.message.includes('duration')) {
       const { destination, duration } = await req.json()
-      return generateFallbackItinerary(destination, duration)
+      return await generateFallbackItinerary(destination, duration)
     }
     
     return NextResponse.json(
@@ -143,7 +143,7 @@ Keep it detailed and informative. Focus on must-see highlights, restaurants, and
 }
 
 // Fallback function for when DeepSeek API fails
-function generateFallbackItinerary(destination: string, duration: number) {
+async function generateFallbackItinerary(destination: string, duration: number) {
   console.log('Generating fallback itinerary for:', destination, duration)
   
   const itinerary = `${duration}-Day Itinerary for ${destination}
@@ -189,6 +189,6 @@ Note: This is a basic itinerary template. For a more detailed and personalized p
 
   return NextResponse.json({ 
     itinerary,
-    fallback: true 
+    fallback: true
   })
 }

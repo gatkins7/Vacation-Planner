@@ -96,32 +96,29 @@ export default function ChatBot() {
 
   return (
     <div className="fixed bottom-4 left-4 z-50">
-      {/* Chat Widget */}
       {isOpen && (
-        <div className="mb-4 bg-white rounded-2xl shadow-2xl border border-gray-200 w-80 h-96 flex flex-col animate-in slide-in-from-bottom-2 duration-200">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-t-2xl">
+        <div className="mb-4 bg-white rounded-2xl shadow-2xl border border-gray-200 w-80 sm:w-96 h-80 sm:h-96 flex flex-col animate-in slide-in-from-bottom-2 duration-200">
+          <div className="flex items-center justify-between p-3 sm:p-4 border-b border-gray-200 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-t-2xl">
             <div className="flex items-center gap-2">
-              <Bot className="h-5 w-5" />
-              <span className="font-semibold">Travel Assistant</span>
+              <Bot className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="font-semibold text-sm sm:text-base">Travel Assistant</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
               className="text-white hover:text-gray-200 transition-colors"
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
           </div>
 
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
             {messages.map((message) => (
               <div
                 key={message.id}
                 className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
+                  className={`max-w-[200px] sm:max-w-xs px-2 sm:px-3 py-2 rounded-lg text-xs sm:text-sm ${
                     message.isUser
                       ? 'bg-blue-500 text-white rounded-br-none'
                       : 'bg-gray-100 text-gray-800 rounded-bl-none'
@@ -133,9 +130,9 @@ export default function ChatBot() {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-gray-100 text-gray-800 px-3 py-2 rounded-lg rounded-bl-none text-sm">
+                <div className="bg-gray-100 text-gray-800 px-2 sm:px-3 py-2 rounded-lg rounded-bl-none text-xs sm:text-sm">
                   <div className="flex items-center gap-2">
-                    <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-blue-500"></div>
+                    <div className="animate-spin rounded-full h-2 w-2 sm:h-3 sm:w-3 border-b-2 border-blue-500"></div>
                     Thinking...
                   </div>
                 </div>
@@ -144,8 +141,7 @@ export default function ChatBot() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input */}
-          <div className="p-4 border-t border-gray-200">
+          <div className="p-3 sm:p-4 border-t border-gray-200">
             <div className="flex items-center gap-2">
               <input
                 type="text"
@@ -153,7 +149,7 @@ export default function ChatBot() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask me about your vacation..."
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-900 placeholder-gray-500 text-sm"
+                className="flex-1 px-2 sm:px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-900 placeholder-gray-500 text-xs sm:text-sm"
                 disabled={isLoading}
               />
               <button
@@ -161,19 +157,18 @@ export default function ChatBot() {
                 disabled={!input.trim() || isLoading}
                 className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send className="h-4 w-4" />
+                <Send className="h-3 w-3 sm:h-4 sm:w-4" />
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Chat Icon */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+        className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
       >
-        <MessageCircle className="h-6 w-6" />
+        <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
       </button>
     </div>
   )
